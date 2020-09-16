@@ -1,27 +1,13 @@
-import pandas as pd
-
-
-def load_player_ids(xlsx):
-    df = pd.read_excel(xlsx)
-    return df['ID'].values.tolist()
-
-
-def load_player_names(xlsx):
-    df = pd.read_excel(xlsx)
-    return df['Player'].values.tolist()
-
-
-def players_by_id(xlsx):
-    df = pd.read_excel(xlsx)
-    ids = df.set_index('ID')['Player'].to_dict()
-    return ids
-
-
-def players_by_name(xlsx):
-    df = pd.read_excel(xlsx)
-    names = df.set_index('Player')['ID'].to_dict()
-    return names
-
+"""
+This module contains various dictionaries that can help when working with api data.
+Available dictionaries:
+    all_teams_by_id : use the api given id key to return the team name from teams through history
+    recent_teams_by_id : use the api given id key to return the team name from teams circa 2010+
+    all_teams_by_name : use the team name as the key to return the api id from teams through history
+    recent_teams_by_name : use the team name as the key to return the api id from teams circa 2010+
+    team_colors: use the team name as the key to return the primary and secondary logo colors in the format
+        ((r,g,b,a primary), (r,g,b,a secondary))
+"""
 
 all_teams_by_id = {
     1: 'New Jersey Devils',
@@ -79,6 +65,9 @@ all_teams_by_id = {
     53: 'Arizona Coyotes',
     54: 'Vegas Golden Knights',
     55: 'Seattle Kraken',
+    56: 'California Golden Seals',
+    57: 'Toronto Arenas',
+    58: 'Toronto St. Patricks',
 }
 
 recent_teams_by_id = {
@@ -112,14 +101,10 @@ recent_teams_by_id = {
     28: 'San Jose Sharks',
     29: 'Columbus Blue Jackets',
     30: 'Minnesota Wild',
-    40: 'Detroit Cougars',
     52: 'Winnipeg Jets',
     53: 'Arizona Coyotes',
     54: 'Vegas Golden Knights',
     55: 'Seattle Kraken',
-    56: 'California Golden Seals',
-    57: 'Toronto Arenas',
-    58: 'Toronto St. Patricks',
 }
 
 all_teams_by_name = {
@@ -256,6 +241,7 @@ team_colors = {
     'Seattle Kraken': ((0, 22, 40, 1), (153, 217, 217, 1)),
 }
 
+# TODO fill out remaining info? Not planning on doing anything with this yet.
 season_history = {
     '19101910': {'teams': 7, 'games': 12, 'champion': 'Montreal Wanderers'},
     '19101911': {'teams': 5, 'games': 16, 'champion': 'Ottawa Hockey Club'},
